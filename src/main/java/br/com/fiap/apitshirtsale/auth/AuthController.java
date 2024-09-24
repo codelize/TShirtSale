@@ -19,10 +19,10 @@ public class AuthController {
     public Algorithm ALGORITHM;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final AuthService authService;
+    private final TokenService tokenService;
 
-    public AuthController(@Value("${jwt.secret}") String secret, AuthService authService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.authService = authService;
+    public AuthController(@Value("${jwt.secret}") String secret, TokenService tokenService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.tokenService = tokenService;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         ALGORITHM = Algorithm.HMAC256(secret);
@@ -48,7 +48,7 @@ public class AuthController {
         if ( !passwordEncoder.matches(credentials.password(), user.getPassword()) )
             throw new RuntimeException("Access Denied");
 
-        return authService.create(user);
+        return tokenService.create(user);
     }
 
 }

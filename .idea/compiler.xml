@@ -8,11 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api_TShirtSale" />
+        <module name="TShirtSale" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="TShirtSale" options="-parameters" />
       <module name="api_TShirtSale" options="-parameters" />
     </option>
   </component>
